@@ -66,7 +66,7 @@ class AerospaceJamServer:
             sensor_data_html += f'<p>{sensor_name}: <span id="{name}">{value}</span></p>\n'
             update_js += f'document.getElementById("{name}").innerText = data.{name};\n'
 
-        return self.template.format(sensor_data_html=sensor_data_html, update_js=update_js)
+        return self.template.replace("{{sensor_data_html}}", sensor_data_html).replace("{{ip}}", self.config['static_ip']).replace("{{update_js}}", "update_js")
 
     def handle_client(self, conn):
         """
@@ -111,4 +111,5 @@ class AerospaceJamServer:
                 self.handle_client(conn)
         finally:
             s.close()
+
 
