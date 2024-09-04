@@ -1,3 +1,5 @@
+# https://how2electronics.com/using-rc522-rfid-reader-module-with-raspberry-pi-pico/
+
 from machine import Pin, SPI
 from os import uname
  
