@@ -372,4 +372,11 @@ class MFRC522:
                         if (value > 0x20) and (value < 0x7f):
                             print(chr(value),end="")
                         else:
-                        
+                            print('.',end="")
+                    print("")
+            else:
+                break
+        if status == self.ERR:
+            print("Authentication error")
+            return self.ERR
+        return self.OK
