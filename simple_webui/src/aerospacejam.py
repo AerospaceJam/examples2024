@@ -64,7 +64,7 @@ class AerospaceJamServer:
         for name, value in sensor_values.items():
             sensor_name = capitalize_first_letter(name)
             sensor_data_html += f'<p>{sensor_name}: <span id="{name}">{value}</span></p>\n'
-            update_js += f'document.getElementById("{name}").innerText = data.{name};\n'
+            update_js += f'document.getElementById("{name}").innerText = data["{name}"];\n'
 
         return self.template.replace("{{sensor_data_html}}", sensor_data_html).replace("{{ip}}", self.config['static_ip']).replace("{{update_js}}", update_js)
 
