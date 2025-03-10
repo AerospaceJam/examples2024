@@ -1,4 +1,4 @@
-from aerospacejam import AerospaceJamServer
+from aerospacejam import AerospaceJamServer, response_html, response_json
 import time
 
 WIFI_CONFIG = {
@@ -15,6 +15,12 @@ pico_server = AerospaceJamServer(WIFI_CONFIG)
 
 # Register a sensor - this is a dummy sensor
 pico_server.register_sensor("dummy", lambda: 25 + (time.time() % 10))
+
+# Register a path that prints a message when a GET request is made
+def hello_handler(request):
+    print("Someone said hello!")
+    return response_html("<h1>Hello, world!</h1>")
+pico_server.register_path('/hello', hello_handler)
 
 # Start the web server
 pico_server.run()
